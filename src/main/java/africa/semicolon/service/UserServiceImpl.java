@@ -2,8 +2,11 @@ package africa.semicolon.service;
 
 import africa.semicolon.data.model.User;
 import africa.semicolon.data.repositories.UserRepository;
+import africa.semicolon.dtos.requests.LogInRequest;
 import africa.semicolon.dtos.requests.RegisterUserRequest;
+import africa.semicolon.dtos.responses.LogInResponse;
 import africa.semicolon.dtos.responses.RegisterUserResponse;
+import africa.semicolon.exception.InvalidUserException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +31,22 @@ public class UserServiceImpl implements UserService{
         response.setMessage("Successful");
         response.setUsername(request.getUsername());
         return response;
+    }
+
+    @Override
+    public LogInResponse login(LogInRequest logInRequest) {
+        User user = userRepository.findByUsername(logInRequest.getUsername());
+        if(user == null || !user.getPassword().equals(logInRequest.getPassword())){
+            throw new InvalidUserException("Invalid details");
+        }
+        User user1 = modelMapper.map(logInRequest, User.class);
+        user1.setLoggedIn(true);
+        userRepository.save(user1);
+
+        LogInResponse response = new LogInResponse();
+        response.setMessage("Logged in successfully");
+        response.setLoggedIn(true);
+       return response;
+
     }
 }
