@@ -31,17 +31,17 @@ class UserServiceImplTest {
 
 
     }
-@Transactional
+
     @Test
     void login() {
         LogInRequest logInRequest = new LogInRequest();
         RegisterUserRequest request = new RegisterUserRequest();
-        request.setUsername("Victoria");
-        request.setPassword("1234");
+        request.setUsername("Ajiri");
+        request.setPassword("Seyi");
         userService.register(request);
 
-        logInRequest.setUsername("Victoria");
-        logInRequest.setPassword("1234");
+        logInRequest.setUsername("Ajiri");
+        logInRequest.setPassword("Seyi");
         LogInResponse response = userService.login(logInRequest);
         assertNotNull(response);
         assertThat(response.getMessage()).isEqualTo("Logged in successfully");
