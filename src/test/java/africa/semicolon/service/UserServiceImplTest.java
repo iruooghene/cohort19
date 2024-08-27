@@ -45,6 +45,7 @@ class UserServiceImplTest {
         LogInResponse response = userService.login(logInRequest);
         assertNotNull(response);
         assertThat(response.getMessage()).isEqualTo("Logged in successfully");
+        assertTrue(response.isLoggedIn());
 
 
 

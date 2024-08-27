@@ -40,10 +40,12 @@ public class UserServiceImpl implements UserService{
             throw new InvalidUserException("Invalid details");
         }
         User user1 = modelMapper.map(logInRequest, User.class);
+        user1.setLoggedIn(true);
         userRepository.save(user1);
 
         LogInResponse response = new LogInResponse();
         response.setMessage("Logged in successfully");
+        response.setLoggedIn(true);
        return response;
 
     }
