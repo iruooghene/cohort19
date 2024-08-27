@@ -5,4 +5,4 @@ COPY . .
 RUN mvn -B clean package -DskipTests
 FROM openjdk:17
 COPY --from=build /target*.jar  cohort19.jar
-ENTRYPOINT["java", "jar", "Dserver.port=8080", "cohort19.jar"]
+ENTRYPOINT ["java", "-jar", "Dserver.port=8080", "cohort19.jar"]
