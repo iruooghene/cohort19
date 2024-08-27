@@ -21,9 +21,7 @@ class UserServiceImplTest {
         request.setPassword("1234");
         RegisterUserResponse response = userService.register(request);
         assertNotNull(response);
-        assertTrue(response.getMessage().contains("success."));
-
-
+        assertTrue(response.getMessage().equals("Successfully registered"));
 
     }
 }

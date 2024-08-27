@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
         User user = modelMapper.map(request, User.class);
         userRepository.save(user);
         RegisterUserResponse response = new RegisterUserResponse();
-        response.setMessage("Successful");
+        response.setMessage("Successfully registered");
         response.setUsername(request.getUsername());
         return response;
     }
