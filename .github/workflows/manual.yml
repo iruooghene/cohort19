@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: 020-manual-input-workflow
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -15,8 +15,6 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
-        # The data type of the input
-        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,4 +27,4 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      run: echo "Hello ${{ github.event.inputs.name }}"
